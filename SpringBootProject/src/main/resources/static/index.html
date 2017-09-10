@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./webjars/bootstrap/3.3.6/css/bootstrap.css"></link>
+<script src="./webjars/angularjs/1.4.8/angular.js"></script>
+<script src="./webjars/angularjs/1.4.8/angular-resource.js"></script>
+<script src="./webjars/angularjs/1.4.8/angular-route.js"></script>
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/controllers.js"></script>
+    <script type="text/javascript" src="./app/services.js"></script>
+  </head>
+  <body ng-app="myApp">
+  <div class="container" ng-controller="AppController">
+    <table class="table table-striped table-bordered">
+        
+        <tr>
+            <td>ID</td>
+            <td>
+                <input type="text" class="form-control" ng-model="user.id" /></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" class="form-control" ng-model="user.name" /></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="text" class="form-control" ng-model="user.gender" /></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                <input type="text" class="form-control" ng-model="user.address" /></td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>
+                <input type="text" class="form-control" ng-model="user.phone" /></td>
+        </tr>
+        <tr>
+            <td class="text-right" colspan="2">
+                <button ng-click="addUsers(user);" class="btn btn-primary">
+                    Add
+                </button>
+            </td>
+        </tr>
+    </table>
+    <div class="row">
+    <div class="col-md-2">
+    <button ng-click="getUser();" class="btn btn-primary" >
+                Display Users
+                </button></div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+            <td><span ng-hide="editMode">{{user.id}}</span>
+                    <input type="text" ng-show="editMode" ng-model="user.id" />
+                </td>
+                <td><span ng-hide="editMode">{{user.name}}</span>
+                    <input type="text" ng-show="editMode" ng-model="user.name" />
+                </td>
+                <td>
+                    <span ng-hide="editMode">{{user.gender}}</span>
+                    <input type="text" ng-show="editMode" ng-model="user.gender" />
+                </td>
+                 <td>
+                    <span ng-hide="editMode">{{user.phone}}</span>
+                    <input type="text" ng-show="editMode" ng-model="user.phone" />
+                </td>
+                <td>
+                    <span ng-hide="editMode">{{user.address}}</span>
+                    <input type="text" ng-show="editMode" ng-model="user.address" />
+                </td>
+                <td>
+                    <i ng-hide="editMode" ng-click="editMode = true; " class="glyphicon glyphicon-edit"></i>
+                    <i class="glyphicon glyphicon-saved" ng-show="editMode" ng-click="editMode = false;editUser(user.id,user)"></i>
+                </td>
+                <td>
+                    <i ng-click="deleteUser(user.id)" class="glyphicon glyphicon-trash"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>  
+</body>
+</html>

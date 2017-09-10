@@ -1,0 +1,35 @@
+(function(angular) {
+	angular.module("myApp.controllers").controller("AppController",['$scope','$http',function($scope,$http) {
+		$scope.addUsers=function(data){
+		 $http.post('/users/add',data)
+         .success(function (response) {
+              $scope.response = response;
+         })
+         .error(function (data, status, headers, config) {
+         });
+		};
+		$scope.getUser=function(){
+			 $http.get("/users/get").success(function (response) {
+	              $scope.users = response;
+	         })
+	         .error(function (data, status, headers, config) {
+	         });
+		};
+		$scope.editUser=function(id,data){
+			 $http.put("/users/edit/"+id,data).success(function (response) {
+				 $scope.response = response;
+	         })
+	         .error(function (data, status, headers, config) {
+	         });
+		};
+		$scope.deleteUser=function(id){
+			 $http.delete("/users/delete/"+id).success(function (response) {
+				   $scope.users = response;
+	         })
+	         .error(function (data, status, headers, config) {
+	         });
+		};
+       }]);
+  
+  
+}(angular));
